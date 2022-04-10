@@ -12,7 +12,7 @@ import Config
 
 config :rewarder, RewarderWeb.Endpoint,
 http: [port: {:system, "PORT"}],
-url: [scheme: "https", host: "sheltered-beyond-34533.herokuapp.com", port: 443],
+url: [scheme: "https", host: "fierce-fjord-33541.herokuapp.com", port: 443],
 force_ssl: [rewrite_on: [:x_forwarded_proto]],
 cache_static_manifest: "priv/static/cache_manifest.json"
 
