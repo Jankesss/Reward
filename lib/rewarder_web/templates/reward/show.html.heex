@@ -1,0 +1,25 @@
+<div class="shadow p-3 mb-5 bg-white rounded"> 
+  <h1>Show Reward</h1>
+
+  <ul>
+
+    <li>
+      <strong>Name:</strong>
+      <%= @reward.name %>
+    </li>
+
+    <li>
+      <strong>Description:</strong>
+      <%= @reward.description %>
+    </li>
+
+    <li>
+      <strong>Price:</strong>
+      <%= @reward.price %>
+    </li>
+
+  </ul>
+
+  <span><%= link "Edit", to: Routes.reward_path(@conn, :edit, @reward), class: "btn btn-dark" %></span> |
+  <span><%= link "Back", to: Routes.reward_path(@conn, :index), class: "btn btn-dark" %></span>
+</div>

@@ -1,0 +1,37 @@
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <center><h3>Exchange points for a reward</h3></center>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th class="p-2" scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for reward <- @rewards do %>
+      <tr>
+        <td><%= reward.name %></td>
+        <td><%= reward.description %></td>
+        <td><%= reward.price %></td>
+
+        <td>
+          <span><%= link "Buy", to: Routes.reward_path(@conn, :buy, reward), class: "btn btn-secondary d-flex justify-content-center"%></span>
+          <div class="d-flex justify-content-between">
+          <%= if @conn.assigns.current_user.role == "admin" do %>
+            <span><%= link "Edit", to: Routes.reward_path(@conn, :edit, reward), class: "btn btn-dark" %></span>
+            <span><%= link "Delete", to: Routes.reward_path(@conn, :delete, reward), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-dark" %></span>
+          <% end %>
+          </div>
+        </td>
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+  <%= if @conn.assigns.current_user.role == "admin" do %>
+    <span><%= link "Add new Reward", to: Routes.reward_path(@conn, :new), class: "btn btn-dark" %></span>
+  <% end %>
+</div>
+

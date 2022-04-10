@@ -1,0 +1,7 @@
+<div class="shadow p-3 mb-5 bg-white rounded"> 
+    <center><h3>Edit Reward</h3></center>
+
+    <%= render "form.html", Map.put(assigns, :action, Routes.reward_path(@conn, :update, @reward)) %>
+
+    <span><%= link "Back", to: Routes.reward_path(@conn, :index), class: "btn btn-dark" %></span>
+</div>

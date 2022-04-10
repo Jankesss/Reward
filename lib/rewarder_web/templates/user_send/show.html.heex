@@ -1,0 +1,35 @@
+<div class="shadow p-3 mb-5 bg-white rounded">
+ <h3><center>Reward someone with your points</center></h3>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th class="pl-2" scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Provide amount to be sent</th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for user <- @users do %>
+    <%= if user != @current_user do %>
+      <tr>
+        <td class="pl-3"><%= user.name %></td>
+        <td><%= user.surname %></td>
+        <td><%= form_for @conn, Routes.user_send_path(@conn, :send), [as: :pointsTS], fn f -> %>
+          <%= hidden_input f, :userid, required: true, min: 0, value: user.id %>
+          <div class="d-flex">
+            <div class="pl-5"><%= number_input f, :pointsTS, required: true, min: 0, max: @conn.assigns.current_user.pointsTS %></div>
+            <div class="pl-2"><%= error_tag f, :pointsTS %></div>
+            <div class="pl-2"><%= submit "Send", class: "btn btn-dark" %></div>
+          </div>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+    </tbody>
+  </table>
+  <%= if @conn.assigns.current_user.role == "admin" do %>
+  <span><%= link "Grant points", to: Routes.user_send_path(@conn, :give_pointsTS), class: "btn btn-dark" %></span>
+  <span><%= link "Add new Reward", to: Routes.reward_path(@conn, :new), class: "btn btn-dark" %></span>
+  <% end %>
+</div>

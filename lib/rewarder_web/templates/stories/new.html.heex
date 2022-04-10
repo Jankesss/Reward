@@ -1,0 +1,7 @@
+<div class="shadow p-3 mb-5 bg-white rounded"> 
+    <h3>New Stories</h3>
+
+    <%= render "form.html", Map.put(assigns, :action, Routes.stories_path(@conn, :create)) %>
+
+    <span><%= link "Back", to: Routes.stories_path(@conn, :index), class: "btn btn-dark" %></span>
+</div>

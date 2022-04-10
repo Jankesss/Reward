@@ -1,0 +1,18 @@
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <h3>History of your claimed rewards</h3>
+  <ul>
+    <li>
+      <strong>Userid:</strong>
+      <%= @stories.userid %>
+    </li>
+
+    <li>
+      <strong>Description:</strong>
+      <%= @stories.description %>
+    </li>
+
+  </ul>
+
+  <span><%= link "Edit", to: Routes.stories_path(@conn, :edit, @stories), class: "btn btn-dark" %></span> |
+  <span><%= link "Back", to: Routes.stories_path(@conn, :index), class: "btn btn-dark" %></span>
+</div>

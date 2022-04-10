@@ -1,0 +1,33 @@
+<div class="shadow p-3 mb-5 bg-white rounded">
+  <center><h3>Listing history of claimed rewards</h3></center>
+
+  <%= if @conn.assigns.current_user.role == "admin" do %>
+    <%= form_for @conn, Routes.stories_path(@conn, :show_filtered_stories), [as: :month], fn f -> %>
+      <%= label f, :month %>
+      <%= select f, :month, ["January": "1" ,"February": "2", "March": "3", "April": "4", "May": "5", "June": "6", "July": "7", "August": "8", "September": "9", "October": "10", "November": "11", "December": "12"] %>
+      <%= error_tag f, :month %>
+      <%= submit "Search", class: "btn btn-dark" %>
+    <% end %>
+  <% end %>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th class="p-2" scope="col">Userid</th>
+        <th scope="col">Description</th>
+
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for stories <- @history do %>
+      <tr>
+        <th class="pl-5" scope="row"><%= stories.userid %></th>
+        <td><%= stories.description %></td>
+        <td><%= stories.inserted_at %></td>
+        
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
+</div>
