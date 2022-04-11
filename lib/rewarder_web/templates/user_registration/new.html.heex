@@ -19,6 +19,10 @@
     <%= email_input f, :email, required: true %>
     <%= error_tag f, :email %>
 
+    <%= label f, :role %>
+    <%= select f, :role, ["Admin": "admin" ,"Member": "member"] %>
+    <%= error_tag f, :role %>
+
     <%= label f, :password %>
     <%= password_input f, :password, required: true %>
     <%= error_tag f, :password %>
